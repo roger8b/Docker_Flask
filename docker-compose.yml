@@ -1,0 +1,20 @@
+# Nome do container
+identidock:
+  # Chave build informa ao Compose que a imagem desse container
+  # deve ser construida a partir de um Dockerfile contido no diretorio atual (.)
+  # Cada definição de container precisa incluir uma chave build ou image.
+  # As chaves image recebem o tag ou ID de uma imagem a ser usada para o container
+  # como ocorre com o argumento de imagem no docker run
+  build: .
+  # ports é analoga ao argumento -p do docker run para exposição de portas
+  ports:
+    - "5000:5000"
+  # Enviromento é diretamente analoga ao argumento -e do docker run que define as 
+  # variaveis de ambiente no container.
+  environment:
+    ENV: DEV
+  # Volumes é diretamente analoga ao comando -v do docker run para definição de volumes
+  # Neste caso estamos montando o diretorio app por vinculação no container para poder fazer
+  # alterações no código a partir do host  
+  volumes:
+    - ./app:/app
